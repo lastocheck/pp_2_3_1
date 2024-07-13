@@ -6,3 +6,9 @@ th,
 td {
     padding: 5px;
 }
+
+.update-user-form label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 8px;
+}

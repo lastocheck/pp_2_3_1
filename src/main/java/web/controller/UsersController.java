@@ -33,11 +33,22 @@ public class UsersController {
     }
 
     @PostMapping("/delete")
-    public String deleteUser(@ModelAttribute("id") int id) {
+    public String deleteUser(@RequestParam("id") int id) {
         if (id > 0) {
             userService.delete(id);
         }
         return "redirect:/users";
     }
 
+    @GetMapping("/update")
+    public String getUpdatePage(@RequestParam("id") int id, Model model) {
+        model.addAttribute("user", userService.findById(id));
+        return "users/update";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.update(user);
+        return "redirect:/users";
+    }
 }
