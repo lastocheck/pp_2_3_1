@@ -11,16 +11,20 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private List<User> users;
+    private int count = 0;
 
     {
         users = new ArrayList<>();
-        users.add(new User(1, "username1", new ContactInfo("email1", "phone1")));
-        users.add(new User(1, "username2", new ContactInfo("email2", "phone2")));
-        users.add(new User(1, "username3", new ContactInfo("email3", "phone3")));
+        users.add(new User(++count, "username1", new ContactInfo("email1", "phone1")));
+        users.add(new User(++count, "username2", new ContactInfo("email2", "phone2")));
+        users.add(new User(++count, "username3", new ContactInfo("email3", "phone3")));
     }
 
     @Override
     public void save(User user) {
+        if (user.getId() == 0) {
+            user.setId(++count);
+        }
         users.add(user);
     }
 

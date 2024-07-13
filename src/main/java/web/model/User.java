@@ -8,6 +8,8 @@ public class User {
 
     private ContactInfo contactInfo;
 
+    public User() { this.contactInfo = new ContactInfo();}
+
     public User(int id, String username, ContactInfo contactInfo) {
         this.id = id;
         this.username = username;
