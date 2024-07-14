@@ -23,17 +23,18 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public void delete(int id) {
-
+        User userToDelete = findById(id).orElseThrow(() -> new RuntimeException("can't find user for removal"));
+        entityManager.remove(userToDelete);
     }
 
     @Override
     public void update(User user) {
-
+        entityManager.merge(user);
     }
 
     @Override
     public Optional<User> findById(int id) {
-        return Optional.empty();
+        return Optional.ofNullable(entityManager.find(User.class, id));
     }
 
     @Override
