@@ -1,5 +1,8 @@
 package web.model;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class ContactInfo {
 
     private String email;

@@ -1,17 +1,22 @@
 package web.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String username;
 
+    @Embedded
     private ContactInfo contactInfo;
 
     public User() { this.contactInfo = new ContactInfo();}
 
-    public User(int id, String username, ContactInfo contactInfo) {
-        this.id = id;
+    public User(String username, ContactInfo contactInfo) {
         this.username = username;
         this.contactInfo = contactInfo;
     }

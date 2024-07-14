@@ -26,9 +26,8 @@ public class UsersController {
 
     @PostMapping()
     public String addUser(@ModelAttribute("user") User user) {
-        if (user.getUsername() != null && !user.getUsername().isBlank()) {
-            userService.save(user);
-        }
+        System.out.println("saving user " + user);
+        userService.save(user);
         return "redirect:/users";
     }
 
