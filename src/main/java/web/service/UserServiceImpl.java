@@ -8,6 +8,7 @@ import web.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -26,8 +27,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(int id) {
-        User userToDelete = userDao.findById(id).orElseThrow(() -> new RuntimeException("can't find user for removal"));
-        userDao.delete(userToDelete);
+//        User userToDelete = userDao.findById(id).orElseThrow(() -> new RuntimeException("can't find user for removal"));
+
+        try {
+            userDao.delete(id);
+        } catch (NoSuchElementException e) {
+            throw new RuntimeException("can't find user for removal");
+        }
+
     }
 
     @Override
