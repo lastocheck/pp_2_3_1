@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(int id) {
-        userDao.delete(id);
+        User userToDelete = userDao.findById(id).orElseThrow(() -> new RuntimeException("can't find user for removal"));
+        userDao.delete(userToDelete);
     }
 
     @Override
